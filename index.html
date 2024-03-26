@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>Nathan's Library</h1>
+    <p>+ Add Book</p>
+    <div class="enterBook">
+        <div class="enterTitle">title
+            <input type="text" id="enterTitle" value="Dune">
+        </div>
+        <div class="enterAuthor">Author
+            <input type="text" id="enterAuthor" value="Frank Herbert">
+        </div>
+        <div class="enterPages">Pages
+            <input type="text" id="enterPages" value="573">
+        </div>
+        <div class="enterRead">Read
+            <input type="checkbox" id="enterRead">
+        </div>
+        <div class="enter">
+            <button onclick="addBookToLibrary()">enter</button>
+        </div>
+    </div>
+
+    //book collection
+    <div id="bookLibrary">
+        <div class="book">
+            <div class="bookCoverWrap">
+                <img src="./imgs/dune.jpg" alt="bookCover">
+            </div>
+            <div class="info">
+                <div class="title">Dune</div>
+                <div class="author">By Frank Herbert</div>
+                <div class="pages">583</div>
+            </div>
+            <div class="read">
+                <img src="./imgs/ssssssssss.png" alt="book has been read">
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

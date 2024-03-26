@@ -1,0 +1,60 @@
+*{
+    background-color: rgb(54, 54, 54);
+}
+
+.enterBook{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    color: orange;
+}
+#bookLibrary{
+    background-color: green;
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(300px,1fr));
+    gap: 5%;
+}
+.book{
+    aspect-ratio: 1/1.5;
+    display: grid;
+    grid-template-columns: 1f;
+    position: relative;
+    border: 1px solid red;
+    border-radius: 8%;
+    overflow: hidden;
+    
+}
+img{
+    width: 100%;
+    height: auto;
+}
+.info{
+    position: absolute;
+    padding-bottom: 55%;
+    bottom: 0px;
+    width: 100%;
+    color: aliceblue;
+    background-color: rgba(0, 0, 255, 0.719);
+}
+.info > *{
+    background-color: rgba(255, 166, 0, 0);
+}
+
+.title{
+    font-size: 30px;
+}
+
+
+.read img{
+    height: 10%;
+    width: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+}
+
+.book:hover{
+    transition: .5s;
+    transform: scale(1.02);
+}
+
