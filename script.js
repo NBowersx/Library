@@ -1,5 +1,7 @@
 const myLibrary = [];
 
+
+//add book proto
 function Book(title, author, pages) {
   // the constructor...
     this.title = title;
@@ -10,23 +12,20 @@ function Book(title, author, pages) {
     }
 }
 
+//updates library 
 function addBookToLibrary() {
-  // do stuff here
   const title = document.getElementById('enterTitle').value;
   const author = document.getElementById('enterAuthor').value;
   const pages = document.getElementById('enterPages').value;
   const read = document.getElementById('enterRead').value;//fix
-
   const newBook = new Book(title, author, pages);
   myLibrary.push(newBook)
-
-
-
   console.log(newBook.info())
   console.log(title, author, pages);
   updateLibrary();
 }
 
+//updates website to show library
 function updateLibrary(){
     const bookLibrary = document.getElementById('bookLibrary')
     bookLibrary.innerHTML = '';
@@ -34,6 +33,8 @@ function updateLibrary(){
     myLibrary.forEach(book => {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add('book');
+        bookDiv.addEventListener('click', ()=> openBook(bookDiv));
+       
         bookDiv.innerHTML = `
             <div class="bookCoverWrap">
                 <img src="./imgs/dune.jpg" alt="Book Cover">
@@ -47,4 +48,10 @@ function updateLibrary(){
         bookLibrary.appendChild(bookDiv);
     });
        
+}
+
+//add unique class to all divs in clicked book
+function openBook(bookDiv){
+ console.log('fde');
+ bookDiv.classList.add('clicked')
 }
