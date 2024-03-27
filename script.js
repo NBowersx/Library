@@ -3,11 +3,15 @@ const myLibrary = [];
 
 //add book proto
 function Book(title, author, pages, read) {
+    const images = ['dune.jpg', 'alc.jpg', 'gatsby.jpg', '1984.jpeg', 'invis.jpg', 'outlawed.jpg'];
+    const randomImage = images[Math.floor(Math.random() * images.length)];
   // the constructor...
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.cover = randomImage
+
     this.info = function(){
         return(this.title+' by '+this.author+' is '+this.pages+'pages.')
     }
@@ -39,8 +43,6 @@ function updateLibrary(){
         bookDiv.setAttribute('id', i )
         bookDiv.addEventListener('click', ()=> openBook(bookDiv));
 
-        const images = ['dune.jpg', 'alc.jpg', 'gatsby.jpg', '1984.jpeg', 'invis.jpg', 'outlawed.jpg'];
-        const randomImage = images[Math.floor(Math.random() * images.length)];
        
         const yesOrNO = book.read ? 'yes.png' : 'no.jpg'
         console.log('below')
@@ -52,7 +54,7 @@ function updateLibrary(){
 
         bookDiv.innerHTML = `
             <div class="bookCoverWrap">
-                <img src="./imgs/${randomImage}" alt="Book Cover">
+                <img src="./imgs/${book.cover}" alt="Book Cover">
             </div>
             <div class="info">
                 <div class="title">${book.title}</div>
