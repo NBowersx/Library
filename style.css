@@ -26,6 +26,7 @@ h1{
     border: 1px solid red;
     border-radius: 8%;
     overflow: hidden;
+    z-index: 5;
     
 }
 img{
@@ -80,7 +81,7 @@ body{
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr;
-    z-index: 2;
+    z-index: 6;
 }
 .clicked.book:hover{
     transition: .5s;

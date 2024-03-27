@@ -20,7 +20,7 @@ function addBookToLibrary() {
   const title = document.getElementById('enterTitle').value;
   const author = document.getElementById('enterAuthor').value;
   const pages = document.getElementById('enterPages').value;
-  const read = document.getElementById('enterRead').checked;//fix
+  const read = document.getElementById('enterRead').checked;
   console.log(read)
   
   const newBook = new Book(title, author, pages, read);
@@ -33,9 +33,10 @@ function updateLibrary(){
     const bookLibrary = document.getElementById('bookLibrary')
     bookLibrary.innerHTML = '';
 
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book, i )=> {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add('book');
+        bookDiv.setAttribute('id', i )
         bookDiv.addEventListener('click', ()=> openBook(bookDiv));
 
         const images = ['dune.jpg', 'alc.jpg', 'gatsby.jpg', '1984.jpeg', 'invis.jpg', 'outlawed.jpg'];
@@ -57,7 +58,7 @@ function updateLibrary(){
                 <div class="title">${book.title}</div>
                 <div class="author">by ${book.author}</div>
                 <div class="pages">${book.pages}</div>
-                <button type="button" class="delete" onclick="deleteBook()">Delete</button>
+                <button type="button" class="delete" id="${i}" onclick="deleteBook(this)">Delete</button>
             </div>
             <div class="read">
                 <img src="./imgs/${yesOrNO}" alt="book has been read">
@@ -89,8 +90,14 @@ function closeBook(){
         element.remove();
     });
 }
+//delete book from library
+function deleteBook(boo){
+    var x = boo.getAttribute('id');
+    delete myLibrary[x];
+    console.log(x);
+    console.log('deleted');
+    console.log(myLibrary);
+    updateLibrary()
 
-function deleteBook(){
-    console.log('deleted')
 
 }
