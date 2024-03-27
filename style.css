@@ -2,6 +2,11 @@
     background-color: rgb(54, 54, 54);
 }
 
+h1{
+    background-color: greenyellow;
+}
+
+
 .enterBook{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -42,7 +47,13 @@ img{
 .title{
     font-size: 30px;
 }
-
+body{
+    z-index: -1;
+}
+.delete{
+    color: aliceblue;
+    visibility: hidden;
+}
 
 .read img{
     height: 10%;
@@ -53,11 +64,43 @@ img{
     background-color: transparent;
 }
 
-.book:hover{
+.book:hover {
     transition: .5s;
     transform: scale(1.02);
 }
+/*#region  clicked book*/ 
 
 .clicked{
-    height: 4000px;
+    position: absolute;
+    top: 0;
+    height: 60vh;
+    width: 80vw;
+    border-radius: 0;
+    background-color: black;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    z-index: 2;
 }
+.clicked.book:hover{
+    transition: .5s;
+    transform: scale(1);
+}
+.clicked img{
+    width: 100%;
+}
+.clicked .info{
+    position: relative;
+    background-color: black;
+}
+.clicked .read img{
+    height: 20px;
+    width: 20px;
+}
+.clicked button{
+    visibility: visible;
+    color: azure
+}
+
+
+/*#endregion  clicked book*/
