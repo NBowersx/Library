@@ -17,6 +17,13 @@ function Book(title, author, pages, read) {
     }
 }
 
+function addBook(x){
+    x.showModal()
+  }
+function closeAddBook(x){
+    x.close()
+  }
+
 //updates library 
 function addBookToLibrary() {
 

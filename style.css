@@ -35,7 +35,7 @@ img{
 }
 .info{
     position: absolute;
-    padding-bottom: 55%;
+    padding-bottom: 15%;
     bottom: 0px;
     width: 100%;
     color: aliceblue;
@@ -64,11 +64,15 @@ body{
     right: 0;
     background-color: transparent;
 }
-
+/*#region Hover*/
 .book:hover {
     transition: .5s;
     transform: scale(1.02);
 }
+.book:hover > .info{
+    padding-bottom: 35%;
+}
+/*#endregion*/
 /*#region  clicked book*/ 
 
 .clicked{
@@ -104,4 +108,4 @@ body{
 }
 
 
-/*#endregion  clicked book*/
+/*#endregion*/

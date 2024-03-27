@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./imgs/dune.jpg">
+    <link rel="shortcut icon" href="./imgs/icon4.png">
     <script src="script.js"></script>
 </head>
 <body onclick="closeBook(this)">
     <h1>Nathan's Library</h1>
-    <p>+ Add Book</p>
-    <div class="enterBook">
+    <button onclick="addBook(enterBook)">+ Add Book</button>
+    
+    <dialog id="enterBook">
         <div class="enterTitle">title
             <input type="text" id="enterTitle" value="Dune">
         </div>
@@ -25,9 +26,9 @@
             <input type="checkbox" id="enterRead">
         </div>
         <div class="enter">
-            <button onclick="addBookToLibrary()">enter</button>
+            <button onclick="addBookToLibrary() ; closeAddBook(enterBook)">enter</button>
         </div>
-    </div>
+    </dialog>
 
     <!-- book collection-->
     <div id="bookLibrary">
