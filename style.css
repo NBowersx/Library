@@ -15,6 +15,15 @@ h1{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     color: orange;
 }
+.description {
+    visibility: hidden;
+    position: absolute;
+}
+.clicked div{
+    visibility: visible;
+    position: relative;
+}
+
 #bookLibrary{
     background-color: green;
     display: grid;
