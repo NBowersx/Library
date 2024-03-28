@@ -6,7 +6,10 @@ h1{
     background-color: greenyellow;
 }
 
-
+.modal::backdrop{
+    background: linear-gradient(45deg, orange, teal);
+    opacity: .4;
+}
 .enterBook{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -65,21 +68,19 @@ body{
     background-color: transparent;
 }
 /*#region Hover*/
-.book:hover {
+.book:hover:not(.clicked) {
     transition: .5s;
     transform: scale(1.02);
 }
-.book:hover > .info{
+.book:hover:not(.clicked) > .info{
     padding-bottom: 35%;
 }
 /*#endregion*/
 /*#region  clicked book*/ 
 
 .clicked{
-    position: absolute;
-    top: 0;
-    height: 60vh;
-    width: 80vw;
+    height: 500px;
+    width: 800px;
     border-radius: 0;
     background-color: black;
     display: grid;
@@ -87,17 +88,17 @@ body{
     grid-template-columns: 1fr 1fr;
     z-index: 6;
 }
-.clicked.book:hover{
-    transition: .5s;
-    transform: scale(1);
-}
 .clicked img{
-    width: 100%;
+    aspect-ratio: 1/1.5;
 }
+
 .clicked .info{
     position: relative;
     background-color: black;
+
+
 }
+
 .clicked .read img{
     height: 20px;
     width: 20px;

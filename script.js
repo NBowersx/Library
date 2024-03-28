@@ -1,6 +1,10 @@
 const myLibrary = [];
+const modal = document.querySelector('.modal')
+const openModal = document.querySelector('.open-button')
 
-
+openModal.addEventListener('click', () => {
+    modal.showModal();
+})
 //add book proto
 function Book(title, author, pages, read) {
     const images = ['dune.jpg', 'alc.jpg', 'gatsby.jpg', '1984.jpeg', 'invis.jpg', 'outlawed.jpg'];
@@ -17,12 +21,7 @@ function Book(title, author, pages, read) {
     }
 }
 
-function addBook(x){
-    x.showModal()
-  }
-function closeAddBook(x){
-    x.close()
-  }
+
 
 //updates library 
 function addBookToLibrary() {
@@ -87,8 +86,23 @@ function openBook(bookDiv){
  const clonedBookDiv = bookDiv.cloneNode(true);
  clonedBookDiv.classList.add('clicked')
 
- document.body.appendChild(clonedBookDiv);
- event.stopPropagation();
+ const bookDes = document.createElement("dialog");
+ bookLibrary.appendChild(bookDes);
+ bookDes.appendChild(clonedBookDiv);
+ bookDes.showModal()
+
+ bookDes.addEventListener('click', (event) =>{
+    console.log('helllooo')
+    console.log(event.target)
+    
+    if(event.target == bookDes){
+        console.log(event.target)
+        console.log('yopoooooo')
+        bookDes.close()
+        
+    }
+ })
+
  
 
 }
@@ -100,12 +114,11 @@ function closeBook(){
     });
 }
 //delete book from library
-function deleteBook(boo){
-    var x = boo.getAttribute('id');
+function deleteBook(book){
+    var x = book.getAttribute('id');
     delete myLibrary[x];
     console.log(x);
     console.log('deleted');
-    console.log(myLibrary);
     updateLibrary()
 
 

@@ -6,30 +6,34 @@
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./imgs/icon4.png">
-    <script src="script.js"></script>
 </head>
-<body onclick="closeBook(this)">
+<body >
     <h1>Nathan's Library</h1>
-    <button onclick="addBook(enterBook)">+ Add Book</button>
+    <button class="open-button">+ Add Book</button>
     
-    <dialog id="enterBook">
-        <div class="enterTitle">title
-            <input type="text" id="enterTitle" value="Dune">
-        </div>
-        <div class="enterAuthor">Author
-            <input type="text" id="enterAuthor" value="Frank Herbert">
-        </div>
-        <div class="enterPages">Pages
-            <input type="text" id="enterPages" value="573">
-        </div>
-        <div class="enterRead">Read
-            <input type="checkbox" id="enterRead">
-        </div>
-        <div class="enter">
-            <button onclick="addBookToLibrary() ; closeAddBook(enterBook)">enter</button>
+    <dialog class="modal">
+        <div class="enterBook">
+
+            <div class="enterTitle">title
+                <input type="text" id="enterTitle" value="Dune">
+            </div>
+            <div class="enterAuthor">Author
+                <input type="text" id="enterAuthor" value="Frank Herbert">
+            </div>
+            <div class="enterPages">Pages
+                <input type="text" id="enterPages" value="573">
+            </div>
+            <div class="enterRead">Read
+                <input type="checkbox" id="enterRead">
+            </div>
+            <form method="dialog">
+                <div class="enter">
+                    <button onclick="addBookToLibrary()">enter</button>
+                </form>
+            </div>                
         </div>
     </dialog>
-
+    
     <!-- book collection-->
     <div id="bookLibrary">
         <div class="book" onclick="openBook(this)"> 
@@ -46,7 +50,8 @@
                 <img src="./imgs/yes.png" alt="book has been read">
             </div>
         </div>
-
+        
     </div>
 </body>
+<script src="script.js"></script>
 </html>
