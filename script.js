@@ -2,9 +2,13 @@ const myLibrary = [];
 const modal = document.querySelector('.modal')
 const openModal = document.querySelector('.open-button')
 
-openModal.addEventListener('click', () => {
+modal.addEventListener('click', closeAddBook)
+
+openModal.addEventListener('click', (event) => {
     modal.showModal();
+    console.log(event.target)
 })
+
 //add book proto
 function Book(title, author, pages, read) {
     const images = ['dune.jpg', 'alc.jpg', 'gatsby.jpg', '1984.jpeg', 'invis.jpg', 'outlawed.jpg'];
@@ -21,7 +25,13 @@ function Book(title, author, pages, read) {
     }
 }
 
-
+function closeAddBook(event){
+    if(event.target == modal){
+        console.log('see ya add book function')
+        modal.close()
+        
+    }
+}
 
 //updates library 
 function addBookToLibrary() {
