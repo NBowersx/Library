@@ -1,4 +1,69 @@
-const myLibrary = [];
+const myLibrary = [
+    {
+        title: 'the help',
+        author:'emma stone',
+        pages:'204',
+        read: 'y',
+        cover: 'dune.jpg'
+    }
+    ,{
+        title: 'django',
+        author:'the foot guy',
+        pages:'304',
+        read: 'y',
+        cover: 'alc.jpg'
+    },{
+        title: 'Alchemist',
+        author: 'Paulo Coelho',
+        pages: '208',
+        read: 'y',
+        cover: 'alc.jpg'
+    },
+    {
+        title: 'The Great Gatsby',
+        author: 'F. Scott Fitzgerald',
+        pages: '180',
+        read: '',
+        cover: 'gatsby.jpg'
+    },
+    {
+        title: '1984',
+        author: 'George Orwell',
+        pages: '328',
+        read: 'y',
+        cover: '1984.jpeg'
+    },
+    {
+        title: 'The Invisible Man',
+        author: 'H.G. Wells',
+        pages: '176',
+        read: '',
+        cover: 'invis.jpg'
+    },
+    {
+        title: 'Outlawed',
+        author: 'Anna North',
+        pages: '272',
+        read: '',
+        cover: 'outlawed.jpg'
+    },
+    {
+        title: 'Django',
+        author: 'The Foot Guy',
+        pages: '304',
+        read: 'y',
+        cover: 'alc.jpg'
+    }
+
+
+
+
+
+];
+window.addEventListener("load", (event) => {
+    updateLibrary();
+    console.log("page is fully loaded");
+  });
 const modal = document.querySelector('.modal')
 const openModal = document.querySelector('.open-button')
 
@@ -56,7 +121,7 @@ function updateLibrary(){
     myLibrary.forEach((book, i )=> {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add('book');
-        bookDiv.setAttribute('id', i )
+        bookDiv.setAttribute('id', i)
         bookDiv.addEventListener('click', ()=> openBook(bookDiv));
 
        
