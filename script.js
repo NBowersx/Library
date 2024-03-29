@@ -4,6 +4,7 @@ const myLibrary = [
         author:'emma stone',
         pages:'204',
         read: 'y',
+        description:'',
         cover: 'dune.jpg'
     }
     ,{
@@ -143,9 +144,11 @@ function updateLibrary(){
             </div>
             <div class="info">
                 <div class="title">${book.title}</div>
+                <div class="authorPages">
                 <div class="author">by ${book.author}</div>
+                <div class="pages">${book.pages} pages</div>
+                </div>
                 <div class="description">${book.description}</div>
-                <div class="pages">${book.pages}</div>
                 <button type="button" class="delete" id="${i}" onclick="deleteBook(this)">Delete</button>
             </div>
             <div class="read">

@@ -1,73 +1,116 @@
-*{
+body{
     background-color: rgb(54, 54, 54);
+   
 }
-
 h1{
     background-color: greenyellow;
 }
-
+/*#region add book button*/
+.modal{
+    background-color: rgb(229, 255, 0);
+}
 .modal::backdrop{
     background: linear-gradient(45deg, orange, teal);
-    opacity: .4;
+    opacity: .8;
 }
+
 .enterBook{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     color: orange;
 }
-.description {
-    visibility: hidden;
-    position: absolute;
-}
-.clicked div{
-    visibility: visible;
-    position: relative;
-}
+/* #endregion add book*/
 
 #bookLibrary{
-    background-color: green;
     display: grid;
-    grid-template-columns: repeat(auto-fill , minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fill , minmax(350px,1fr));
     gap: 5%;
 }
+
+/*#region book*/
 .book{
     aspect-ratio: 1/1.5;
     display: grid;
     grid-template-columns: 1f;
     position: relative;
     border: 1px solid red;
-    border-radius: 8%;
-    overflow: hidden;
-    z-index: 5;
-    
+    border-radius: 2%;
+    overflow: hidden;  
+    background-color: rgb(252, 0, 0); 
 }
-img{
-    width: 100%;
-    height: auto;
+.book:hover:not(.clicked) {
+    transition: .5s;
+    transform: scale(1.02);
 }
+.book.clicked{
+    background-color: rgb(0, 255, 64);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 600px;
+    aspect-ratio: 5/3;
+}
+dialog{
+    border: 2px solid blue;
+    border-radius: 2%;
+    padding: 0px;
+}
+
+/*#endregion Book*/
+
+
+/*#region Info*/
 .info{
     position: absolute;
-    padding-bottom: 15%;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     color: aliceblue;
     background-color: rgba(0, 0, 255, 0.719);
-}
-.info > *{
-    background-color: rgba(255, 166, 0, 0);
+    padding-bottom: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
 }
 
-.title{
-    font-size: 30px;
+.clicked .info{
+    background-color: black;
+
 }
-body{
-    z-index: -1;
+
+
+/*#endregion Book*/
+
+/*#region Description*/
+.description {
+    visibility: hidden;
+    position: absolute;
+    grid-column: span 2;
 }
+.book:hover .description{
+    visibility: visible;
+    position: relative;
+}
+.clicked div{
+    visibility: visible;
+    position: relative;
+}
+
+/*#endregion Description*/
+
+
+
+/*#region Delete*/
+
 .delete{
-    color: aliceblue;
     visibility: hidden;
 }
+.clicked .delete{
+    visibility: visible;
 
+}
+/*#endregion Delete*/
+
+
+/*#region read icon*/
 .read img{
     height: 10%;
     width: auto;
@@ -76,46 +119,32 @@ body{
     right: 0;
     background-color: transparent;
 }
-/*#region Hover*/
-.book:hover:not(.clicked) {
-    transition: .5s;
-    transform: scale(1.02);
+div.read{
+    position: absolute;
 }
-.book:hover:not(.clicked) > .info{
-    padding-bottom: 35%;
-}
-/*#endregion*/
-/*#region  clicked book*/ 
-
-.clicked{
-    height: 500px;
-    width: 800px;
-    border-radius: 0;
-    background-color: black;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 1fr;
-    z-index: 6;
-}
-.clicked img{
-    aspect-ratio: 1/1.5;
-}
-
-.clicked .info{
-    position: relative;
-    background-color: black;
+/*#endregion read icon*/
 
 
+.title:not(.clicked){
+    font-size: 30px;
+    grid-column: span 2;
 }
+.clicked .title {
+    color: orange;
+    font-size: 100px;
 
-.clicked .read img{
-    height: 20px;
-    width: 20px;
 }
-.clicked button{
-    visibility: visible;
-    color: azure
+.authorPages{
+    display: flex;
+    padding-bottom: 10px;
 }
-
-
-/*#endregion*/
+.author{
+    padding-right: 10px;
+}
+.bookCoverWrap > img{
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
