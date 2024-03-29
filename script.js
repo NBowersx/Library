@@ -129,7 +129,7 @@ function updateLibrary(){
         bookDiv.addEventListener('click', ()=> openBook(bookDiv));
 
        
-        const yesOrNO = book.read ? 'yes.png' : 'no.jpg'
+        const yesOrNO = book.read ? 'yes.png' : 'no.png'
         console.log('below')
         console.log(book.read)
         console.log(book.title)
@@ -140,7 +140,7 @@ function updateLibrary(){
 
         bookDiv.innerHTML = `
             <div class="bookCoverWrap">
-                <img src="./imgs/${book.cover}" alt="Book Cover">
+                <img class='bookCover' src="./imgs/${book.cover}" alt="Book Cover">
             </div>
             <div class="info">
                 <div class="title">${book.title}</div>
@@ -149,7 +149,7 @@ function updateLibrary(){
                 <div class="pages">${book.pages} pages</div>
                 </div>
                 <div class="description">${book.description}</div>
-                <button type="button" class="delete" id="${i}" onclick="deleteBook(this)">Delete</button>
+                <button type="button" class="delete" id="${i}" onclick="deleteBook(this)">Delete Book from Library</button>
             </div>
             <div class="read">
                 <img src="./imgs/${yesOrNO}" alt="book has been read">
@@ -175,14 +175,8 @@ function openBook(bookDiv){
  bookDes.showModal()
 
  bookDes.addEventListener('click', (event) =>{
-    console.log('helllooo')
-    console.log(event.target)
-    
     if(event.target == bookDes){
-        console.log(event.target)
-        console.log('yopoooooo')
-        bookDes.close()
-        
+        bookDes.close()        
     }
  })
 
