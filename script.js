@@ -129,7 +129,7 @@ function updateLibrary(){
         bookDiv.addEventListener('click', ()=> openBook(bookDiv));
 
        
-        const yesOrNO = book.read ? 'yes.png' : 'no.png'
+        const yesOrNO = book.read ? 'yes.svg' : 'no.svg'
         console.log('below')
         console.log(book.read)
         console.log(book.title)
@@ -169,9 +169,11 @@ function openBook(bookDiv){
  const clonedBookDiv = bookDiv.cloneNode(true);
  clonedBookDiv.classList.add('clicked')
 
+
  const bookDes = document.createElement("dialog");
  bookLibrary.appendChild(bookDes);
  bookDes.appendChild(clonedBookDiv);
+
  bookDes.showModal()
 
  bookDes.addEventListener('click', (event) =>{

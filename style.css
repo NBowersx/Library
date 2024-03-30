@@ -4,6 +4,7 @@ body{
 }
 h1{
     background-color: greenyellow;
+    padding: 40px;
 }
 /*#region add book button*/
 .modal{
@@ -68,7 +69,11 @@ h1{
     grid-template-columns: 1fr 1fr;
     height: 600px;
     aspect-ratio: 5/3;
+    
 }
+
+
+
 dialog{
     border: 2px solid blue;
     border-radius: 2%;
