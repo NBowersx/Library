@@ -1,24 +1,46 @@
 body{
     background-color: rgb(54, 54, 54);
-   
 }
 h1{
     background-color: greenyellow;
     padding: 40px;
+    margin: 10px;
 }
 /*#region add book button*/
-.modal{
-    background-color: rgb(229, 255, 0);
+.open-button {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 3;
+    background-color: transparent;
+    border-width: 0;
+
 }
-.modal::backdrop{
+.open-button img{
+    height: 80px;
+}
+.open-button img:hover{
+    transform: rotate(180deg);
+    transition: .5s;
+    
+    
+
+}
+.enter{
+    background-color: rgb(241, 255, 116);
+    height: 600px;
+    width: 300px;
+}
+.enter::backdrop{
     background: linear-gradient(45deg, orange, teal);
     opacity: .8;
 }
 
 .enterBook{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     color: orange;
+    
 }
 /* #endregion add book*/
 
@@ -148,6 +170,9 @@ dialog{
     -webkit-user-drag: none; /* Safari and older versions of Chrome */
 
 }
+.read img:hover{
+    opacity: 0.8;
+}
 div.read:not(.clicked){
     position: absolute;
     right: 1%;
@@ -190,4 +215,9 @@ div.read:not(.clicked){
     transform: translate(-50%, -50%);
     user-drag: none; /* Standard syntax */
     -webkit-user-drag: none; /* Safari and older versions of Chrome */
+}
+.book.clicked >.bookCoverWrap {
+    background-image: url(./imgs/alc.jpg);
+    background-size: cover;
+    background-position: center;
 }

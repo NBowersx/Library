@@ -66,16 +66,14 @@ const myLibrary = [
 ];
 window.addEventListener("load", (event) => {
     updateLibrary();
-    console.log("page is fully loaded");
   });
-const modal = document.querySelector('.modal')
+const enterInfo = document.querySelector('.enter')
 const openModal = document.querySelector('.open-button')
-
-modal.addEventListener('click', closeAddBook)
+//close add book model on outside click
+enterInfo.addEventListener('click', closeAddBook)
 
 openModal.addEventListener('click', (event) => {
-    modal.showModal();
-    console.log(event.target)
+    enterInfo.showModal();
 })
 
 //add book proto
@@ -92,12 +90,12 @@ function Book(title, author, pages, read) {
     this.info = function(){
         return(this.title+' by '+this.author+' is '+this.pages+'pages.')
     }
+    updateLibrary()
 }
 
 function closeAddBook(event){
-    if(event.target == modal){
-        console.log('see ya add book function')
-        modal.close()
+    if(event.target == enterInfo){
+        enterInfo.close()
         
     }
 }
@@ -110,7 +108,6 @@ function addBookToLibrary() {
   const author = document.getElementById('enterAuthor').value;
   const pages = document.getElementById('enterPages').value;
   const read = document.getElementById('enterRead').checked;
-  console.log(read)
   
   const newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook)
@@ -126,21 +123,23 @@ function updateLibrary(){
         const bookDiv = document.createElement("div");
         bookDiv.classList.add('book');
         bookDiv.setAttribute('id', i)
-        bookDiv.addEventListener('click', ()=> openBook(bookDiv));
+        bookDiv.addEventListener('click', (event)=> {
+
+            //change read icons on click
+            if (event.target.classList.contains('readIcons')){
+                readIcon(book, 'x')
+            }
+            else{openBook(bookDiv)   
+    }});
+    const yesOrNO = book.read ? 'yes.svg' : 'no.svg'
 
        
-        const yesOrNO = book.read ? 'yes.svg' : 'no.svg'
-        console.log('below')
-        console.log(book.read)
-        console.log(book.title)
-        console.log(book.author)
-        console.log(book.description)
         
 
 
         bookDiv.innerHTML = `
             <div class="bookCoverWrap">
-                <img class='bookCover' src="./imgs/${book.cover}" alt="Book Cover">
+                <img class='bookCover' id:"cover" src="./imgs/${book.cover}" alt="Book Cover">
             </div>
             <div class="info">
                 <div class="title">${book.title}</div>
@@ -152,7 +151,7 @@ function updateLibrary(){
                 <button type="button" class="delete" id="${i}" onclick="deleteBook(this)">Delete Book from Library</button>
             </div>
             <div class="read">
-                <img src="./imgs/${yesOrNO}" alt="book has been read">
+                <img class="readIcons" src="./imgs/${yesOrNO}" alt="book has/nt been read">
             </div>
         `;
         bookLibrary.appendChild(bookDiv);
@@ -162,27 +161,26 @@ function updateLibrary(){
 //https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg
 
 
-//add unique class to all divs in clicked book make new div ssssss
-//maybe look into making it a dialog
-function openBook(bookDiv){
- console.log('clicked');
- const clonedBookDiv = bookDiv.cloneNode(true);
- clonedBookDiv.classList.add('clicked')
 
+function openBook(bookDiv){    
+    const clonedBookDiv = bookDiv.cloneNode(true);
+    clonedBookDiv.classList.add('clicked')
+    const bookDes = document.createElement("dialog");
+    bookLibrary.appendChild(bookDes);
+    bookDes.appendChild(clonedBookDiv);
 
- const bookDes = document.createElement("dialog");
- bookLibrary.appendChild(bookDes);
- bookDes.appendChild(clonedBookDiv);
+    bookDes.showModal()
 
- bookDes.showModal()
+    bookDes.addEventListener('click', (event) =>{
+        if (event.target.classList.contains('readIcons')){
 
- bookDes.addEventListener('click', (event) =>{
-    if(event.target == bookDes){
+        }
+        if(event.target == bookDes){
+        console.log(event.target)
         bookDes.close()        
-    }
+        }
  })
 
- 
 
 }
 
@@ -196,9 +194,17 @@ function closeBook(){
 function deleteBook(book){
     var x = book.getAttribute('id');
     delete myLibrary[x];
-    console.log(x);
     console.log('deleted');
     updateLibrary()
 
 
 }
+function readIcon(book){
+    book.read = !book.read
+
+    
+    Book(book,book.read)
+}
+
+
+
