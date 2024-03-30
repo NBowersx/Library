@@ -91,6 +91,7 @@ h1{
     grid-template-columns: 1fr 1fr;
     height: 600px;
     aspect-ratio: 5/3;
+    z-index: 2;
     
 }
 
@@ -207,6 +208,13 @@ div.read:not(.clicked){
 .author{
     padding-right: 10px;
 }
+.clicked #bk  {
+    height: 200%;
+    width: auto;
+    filter: blur(3px);
+    z-index: -1;
+}
+
 .bookCoverWrap > .bookCover{
     height: 100%;
     position: absolute;
@@ -215,9 +223,4 @@ div.read:not(.clicked){
     transform: translate(-50%, -50%);
     user-drag: none; /* Standard syntax */
     -webkit-user-drag: none; /* Safari and older versions of Chrome */
-}
-.book.clicked >.bookCoverWrap {
-    background-image: url(./imgs/alc.jpg);
-    background-size: cover;
-    background-position: center;
 }

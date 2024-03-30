@@ -139,7 +139,8 @@ function updateLibrary(){
 
         bookDiv.innerHTML = `
             <div class="bookCoverWrap">
-                <img class='bookCover' id:"cover" src="./imgs/${book.cover}" alt="Book Cover">
+                <img class='bookCover' id="cover" src="./imgs/${book.cover}" alt="Book Cover">
+                <img class='bookCover' id="bk" src="./imgs/${book.cover}" alt="Book Cover">
             </div>
             <div class="info">
                 <div class="title">${book.title}</div>
