@@ -64,7 +64,7 @@ const myLibrary = [
         cover: 'alc.jpg'
     }
 ];
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
     updateLibrary();
   });
 const enterInfo = document.querySelector('.enter')
@@ -72,35 +72,14 @@ const openModal = document.querySelector('.open-button')
 //close add book model on outside click
 enterInfo.addEventListener('click', closeAddBook)
 
-openModal.addEventListener('click', (event) => {
+openModal.addEventListener('click', () => {
     enterInfo.showModal();
 })
 
-//add book proto
-function Book(title, author, pages, read) {
-    const images = ['dune.jpg', 'alc.jpg', 'gatsby.jpg', '1984.jpeg', 'invis.jpg', 'outlawed.jpg'];
-    const randomImage = images[Math.floor(Math.random() * images.length)];
-  // the constructor...
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.cover = randomImage;
+let daft = 0;
 
-    this.info = function(){
-        return(this.title+' by '+this.author+' is '+this.pages+'pages.')
-    }
-    updateLibrary()
-}
 
-function closeAddBook(event){
-    if(event.target == enterInfo){
-        enterInfo.close()
-        
-    }
-}
-
-//updates library 
+//updates take book info sent it to prototype and then run library update
 function addBookToLibrary() {
 
   //get all input info
@@ -113,68 +92,93 @@ function addBookToLibrary() {
   myLibrary.push(newBook)
   updateLibrary();
 }
+//add book proto
+function Book(title, author, pages, read) {
+    const images = ['dune.jpg', 'alc.jpg', 'gatsby.jpg', '1984.jpeg', 'invis.jpg', 'outlawed.jpg'];
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+  // the constructor...
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.cover = randomImage;
 
-//updates website to show library
+    updateLibrary()
+}
+//close the add book function when clicked outside
+function closeAddBook(event){
+    if(event.target == enterInfo){
+        enterInfo.close()
+    }
+}
+
+
+//updates website to show library of books
 function updateLibrary(){
     const bookLibrary = document.getElementById('bookLibrary')
     bookLibrary.innerHTML = '';
-
+    
     myLibrary.forEach((book, i )=> {
-        const bookDiv = document.createElement("div");
-        bookDiv.classList.add('book');
-        bookDiv.setAttribute('id', i)
-        bookDiv.addEventListener('click', (event)=> {
-
-            //change read icons on click
-            if (event.target.classList.contains('readIcons')){
-                readIcon(book, 'x')
-            }
-            else{openBook(bookDiv)   
-    }});
-    const yesOrNO = book.read ? 'yes.svg' : 'no.svg'
-
-       
+        const bookDiv = createBookDiv(book, i);
+        bookLibrary.appendChild(bookDiv)
+    });
         
+}
 
+function createBookDiv(book, index){
+    const bookDiv = document.createElement('div')
+    bookDiv.classList.add('book')
+    bookDiv.setAttribute('id', index)
+    bookDiv.addEventListener('click', (event) => {
+        handleBookClick(event , book, bookDiv)
+    });
+    const yesOrNo = book.read ? 'yes.svg' : 'no.svg';
 
-        bookDiv.innerHTML = `
-            <div class="bookCoverWrap">
-                <img class='bookCover' id="cover" src="./imgs/${book.cover}" alt="Book Cover">
-                <img class='bookCover' id="bk" src="./imgs/${book.cover}" alt="Book Cover">
-            </div>
-            <div class="info">
-                <div class="title">${book.title}</div>
-                <div class="authorPages">
+    bookDiv.innerHTML = `
+        <div class="bookCoverWrap">
+            <img class='bookCover' id="cover" src="./imgs/${book.cover}" alt="Book Cover">
+            <img class='bookCover' id="bk" src="./imgs/${book.cover}" alt="Book Cover">
+        </div>
+        <div class="info">
+            <div class="title">${book.title}</div>
+            <div class="authorPages">
                 <div class="author">by ${book.author}</div>
                 <div class="pages">${book.pages} pages</div>
-                </div>
-                <div class="description">${book.description}</div>
-                <button type="button" class="delete" id="${i}" onclick="deleteBook(this)">Delete Book from Library</button>
             </div>
-            <div class="read">
-                <img class="readIcons" src="./imgs/${yesOrNO}" alt="book has/nt been read">
-            </div>
-        `;
-        bookLibrary.appendChild(bookDiv);
-    });
-       
+            <div class="description">${book.description}</div>
+            <button type="button" class="delete" onclick="deleteBook(this)" data-index="${index}">Delete Book from Library</button>
+        </div>
+        <div class="read">
+            <img class="readIcons" src="./imgs/${yesOrNo}" alt="book has/nt been read">
+        </div>
+    `;
+    return bookDiv;
 }
-//https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg
 
-
-
-function openBook(bookDiv){    
+function handleBookClick(event, book, bookDiv) {
+    //change read icons on click
+    if (event.target.classList.contains('readIcons')) {
+        readIcon(book, 'x');
+    } else {
+        openBook(bookDiv, book);
+    }
+}
+            
+function openBook(bookDiv, book){    
     const clonedBookDiv = bookDiv.cloneNode(true);
     clonedBookDiv.classList.add('clicked')
     const bookDes = document.createElement("dialog");
     bookLibrary.appendChild(bookDes);
     bookDes.appendChild(clonedBookDiv);
-
     bookDes.showModal()
 
-    bookDes.addEventListener('click', (event) =>{
-        if (event.target.classList.contains('readIcons')){
 
+    bookDes.addEventListener('click', (event) =>{
+        console.log(event.target)
+
+        if (event.target.classList.contains('readIcons')){
+            console.log(book.read)
+            readIcon(book, bookDiv)
         }
         if(event.target == bookDes){
         console.log(event.target)
@@ -193,18 +197,49 @@ function closeBook(){
 }
 //delete book from library
 function deleteBook(book){
-    var x = book.getAttribute('id');
-    delete myLibrary[x];
+    var x = book.getAttribute('data-index');
+    const title = document.querySelector('.clicked .title').textContent
     console.log('deleted');
-    updateLibrary()
+    console.log(title);
 
+    const deleteConfirm = document.createElement('dialog')
+    const deleteConfirmButton = document.createElement('button')
+    const doNotDeleteButton = document.createElement('button')
 
+    deleteConfirm.innerText = 'Are you sure you want to delete '+title + '?';
+    deleteConfirmButton.innerText = 'Yes Remove From Library'
+    doNotDeleteButton.innerText = 'No Keep in Library'
+
+    deleteConfirm.classList.add('confirmDelete')
+    document.body.appendChild(deleteConfirm)
+    deleteConfirm.appendChild(deleteConfirmButton)
+    deleteConfirm.appendChild(doNotDeleteButton)
+    deleteConfirm.showModal()
+
+    deleteConfirm.addEventListener('click', (event) =>{
+        console.log(event.target)
+        if(event.target == deleteConfirmButton){
+           deleteConfirm.close()
+           delete myLibrary[x];
+           updateLibrary()
+        }  
+        else{
+
+            deleteConfirm.close()
+        }
+        }
+    
+    )
+   
 }
-function readIcon(book){
+
+
+function readIcon(book, bookDiv){
     book.read = !book.read
+   
+    Book(book)
 
     
-    Book(book,book.read)
 }
 
 
